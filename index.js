@@ -8,7 +8,11 @@ let authorColWidth = 23;
 let space = ' ';
 let equals = '=';
 
-
+splitData.forEach((element, index) => {
+  element = formatDate(element);
+  splitData[index] = element
+  return;
+});
 
 //for Each possibly add later
 for(let i = 0; i < splitData.length; i += 3){
@@ -28,8 +32,12 @@ for(let i = 0; i < splitData.length; i += 3){
 
 function formatDate(string){
   // first will check if date, could use external libary to be more accurate
-  if(string.length <= 10 && )
-
+  if(string.length <= 10 && string.indexOf('/') == 2){
+    let splitString = string.split('/');
+    splitString[1] = replaceMonth(splitString[1]);
+    string = splitString[0] + ' ' + splitString[1] + ' ' + splitString[2];
+  }
+  return string;
 }
 
 function makeDataFitColumn(data, colLength){
@@ -42,4 +50,46 @@ function makeDataFitColumn(data, colLength){
   }
   // if neither then data is exactly the right size
   return data;
+}
+
+function replaceMonth(month){
+  switch(month){
+    case ('01'):
+      month = 'JAN';
+      break;
+    case ('02'):
+      month = 'FEB';
+      break;
+    case ('03'):
+      month = 'MAR';
+      break;
+    case ('04'):
+      month = 'APR';
+      break;  
+    case ('05'):
+      month = 'MAY';
+      break;
+    case ('06'):
+      month = 'JUN';
+      break;
+    case ('07'):
+      month = 'JUL';
+      break;
+    case ('08'):
+      month = 'AUG';
+      break;
+    case ('09'):
+      month = 'SEP';
+      break;
+    case ('10'):
+      month = 'OCT';
+      break;
+    case ('11'):
+      month = 'NOV';
+      break;
+    case ('12'):
+      month = 'DEC';
+      break;
+  }
+  return month;
 }
