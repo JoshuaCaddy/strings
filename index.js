@@ -30,16 +30,6 @@ for(let i = 0; i < splitData.length; i += 3){
   }
 }
 
-function formatDate(string){
-  // first will check if date, could use external libary to be more accurate
-  if(string.length <= 10 && string.indexOf('/') == 2){
-    let splitString = string.split('/');
-    splitString[1] = replaceMonth(splitString[1]);
-    string = splitString[0] + ' ' + splitString[1] + ' ' + splitString[2];
-  }
-  return string;
-}
-
 function makeDataFitColumn(data, colLength){
   if (colLength < data.length){
     data = data.slice(0,(colLength-3));
@@ -50,6 +40,16 @@ function makeDataFitColumn(data, colLength){
   }
   // if neither then data is exactly the right size
   return data;
+}
+
+function formatDate(string){
+  // first will check if date, could use external libary to be more accurate
+  if(string.length <= 10 && string.indexOf('/') == 2){
+    let splitString = string.split('/');
+    splitString[1] = replaceMonth(splitString[1]);
+    string = splitString[0] + ' ' + splitString[1] + ' ' + splitString[2];
+  }
+  return string;
 }
 
 function replaceMonth(month){
